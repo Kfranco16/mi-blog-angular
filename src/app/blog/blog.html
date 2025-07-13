@@ -1,1 +1,15 @@
-<p>blog works!</p>
+<section class="blog-container">
+  <h1>Mi Blog de Noticias</h1>
+
+  <article *ngFor="let noticia of publicaciones" class="blog-post">
+    <h2>{{ noticia.titulo }}</h2>
+
+    <img [src]="noticia.imagen" [alt]="noticia.titulo" />
+
+    <p>{{ noticia.texto }}</p>
+
+    <small
+      >Publicado el: {{ noticia.fecha | date : "d 'de' MMMM 'de' y" }}</small
+    >
+  </article>
+</section>
