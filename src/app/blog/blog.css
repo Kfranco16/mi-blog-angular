@@ -1,0 +1,230 @@
+/* Contenedor principal del blog */
+/* Centraliza el contenido y limita el ancho máximo para mejor legibilidad */
+.blog-container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Título principal con efecto de zoom pulsante */
+/* Utiliza gradiente de texto, animación de zoom y elementos decorativos */
+.titulo-pulsante {
+  text-align: center;
+  color: #171717;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  /* Gradiente aplicado solo al texto usando background-clip */
+  background: linear-gradient(135deg, #18dbe6 0%, #022f32 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #667eea;
+  position: relative;
+  /* Animación continua de escala */
+  animation: zoomPulse 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.titulo-pulsante::after {
+  /* Elemento decorativo: línea pequeña centrada debajo del título */
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* Animación de zoom pulsante */
+/* El título se agranda al 105% y vuelve al tamaño normal cada 2 segundos */
+@keyframes zoomPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Formulario para nuevas noticias */
+.form-container {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+/* Contenedor para organizar noticias en grid */
+/* Utiliza CSS Grid para mostrar 2 noticias por fila con espaciado uniforme */
+.noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Botón toggle del formulario */
+/* Botón colapsable con gradiente, efectos hover y ajuste automático de ancho */
+.form-toggle {
+  background: linear-gradient(135deg, #022f32 0%, #11a9b1 100%);
+  color: white;
+  padding: 8px 8px;
+  margin: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  user-select: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Se ajusta automáticamente al contenido */
+  width: fit-content;
+  /* Espacio entre texto e icono */
+  gap: 10px;
+}
+
+.form-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-icon {
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+/* Contenido del formulario con animación */
+/* Animación de deslizamiento hacia abajo cuando el formulario se despliega */
+.form-content {
+  animation: slideDown 0.3s ease-out;
+  margin-top: 20px;
+}
+
+/* Animación de deslizamiento suave */
+/* El formulario aparece con opacidad y movimiento desde arriba */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group button {
+  /* Botón de envío con gradiente y efectos similar al botón toggle */
+  background: linear-gradient(135deg, #022f32 0%, #11a9b1 100%);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
+.form-group button:hover {
+  /* Efecto hover: elevación y sombra más intensa */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-group button:disabled {
+  /* Estado deshabilitado: sin efectos visuales */
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Artículos del blog */
+.blog-post {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+/* Estilo para todas las imágenes del blog */
+/* Tamaño uniforme para todas las imágenes con recorte proporcional */
+.blog-post img {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  /* Mantiene proporción y recorta si es necesario */
+  object-fit: cover;
+  border-radius: 6px;
+  margin: 15px 0;
+  display: block;
+}
+
+.blog-post p {
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.blog-post small {
+  color: #888;
+  font-style: italic;
+}
+
+/* Responsive */
+/* Adaptación para dispositivos móviles: una columna y tamaños ajustados */
+@media (max-width: 600px) {
+  .blog-container {
+    padding: 10px;
+  }
+
+  .blog-post img {
+    max-width: 100%;
+    height: 200px;
+  }
+
+  .noticias-grid {
+    /* Cambia a una sola columna en móviles */
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}

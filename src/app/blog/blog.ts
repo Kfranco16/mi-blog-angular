@@ -1,20 +1,25 @@
+// Importaciones necesarias para el componente
 import { Component } from '@angular/core';
-import { Noticia } from '../interfaces/noticia';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Noticia } from '../interfaces/noticia'; // Interface para tipado fuerte
+import { CommonModule } from '@angular/common'; // Para *ngFor, *ngIf y pipes
+import { FormsModule } from '@angular/forms'; // Para [(ngModel)] y formularios
 
 @Component({
-  selector: 'app-blog',
-  imports: [CommonModule, FormsModule],
+  selector: 'app-blog', // Selector para usar el componente
+  imports: [CommonModule, FormsModule], // Módulos necesarios para standalone component
   templateUrl: './blog.html',
   styleUrl: './blog.css',
 })
 export class Blog {
-  // 2. Creamos y definimos el tipo de la propiedad
+  // Propiedades públicas accesibles desde el template
+  // Array que almacena todas las noticias del blog
   public publicaciones: Noticia[];
+  // Objeto para capturar datos del formulario de nueva noticia
   public nuevaNoticia: Noticia;
+  // Controla la visibilidad del formulario colapsable
+  public mostrarFormulario: boolean = false;
   constructor() {
-    // 3. Inicializamos la propiedad con datos de ejemplo
+    // Inicialización de datos de ejemplo para mostrar en la aplicación
     this.publicaciones = [
       {
         titulo:
@@ -34,6 +39,9 @@ export class Blog {
         fecha: new Date('2025-07-10'),
       },
     ];
+
+    // Inicialización del objeto para nueva noticia con valores vacíos
+    // Se conecta con [(ngModel)] en el formulario
     this.nuevaNoticia = {
       titulo: '',
       texto: '',
@@ -41,8 +49,17 @@ export class Blog {
       fecha: new Date(),
     };
   }
+
+  // Método para alternar la visibilidad del formulario
+  // Conectado con (click) en el template
+  toggleFormulario() {
+    this.mostrarFormulario = !this.mostrarFormulario;
+  }
+
+  // Método para agregar una nueva noticia al blog
+  // Conectado con (ngSubmit) del formulario
   agregarNoticia() {
-    // 1. Validación (aunque el botón está deshabilitado, es una buena práctica)
+    // Validación de campos obligatorios (doble seguridad además del HTML required)
     if (
       !this.nuevaNoticia.titulo ||
       !this.nuevaNoticia.texto ||
@@ -54,17 +71,16 @@ export class Blog {
       return; // Detiene la ejecución si la validación falla
     }
 
-    // 2. Añadimos la nueva publicación al array.
-    // Usamos el 'spread operator' (...) para crear una COPIA del objeto.
-    // ¡Esto es crucial para que al limpiar el formulario no se modifique el post ya añadido!
-    // También actualizamos la fecha al momento exacto de la publicación.
+    // Agregar la nueva noticia al array de publicaciones
+    // Usamos spread operator (...) para crear una copia del objeto
+    // Esto previene modificaciones no deseadas al limpiar el formulario
     this.publicaciones.push({
       ...this.nuevaNoticia,
-      fecha: new Date(),
+      fecha: new Date(), // Fecha actual de publicación
     });
 
-    // 3. Reiniciamos el objeto nuevaNoticia para limpiar los campos del formulario.
-    // Gracias al two-way binding, la vista se actualizará automáticamente.
+    // Limpiar el formulario reiniciando el objeto nuevaNoticia
+    // El two-way binding [(ngModel)] actualizará automáticamente la vista
     this.nuevaNoticia = {
       titulo: '',
       texto: '',
@@ -72,6 +88,7 @@ export class Blog {
       fecha: new Date(),
     };
 
+    // Log para debugging (se puede remover en producción)
     console.log('¡Nueva noticia publicada!', this.publicaciones);
   }
 }
