@@ -42,6 +42,36 @@ export class Blog {
     };
   }
   agregarNoticia() {
-    // La lógica para añadir la noticia irá aquí
+    // 1. Validación (aunque el botón está deshabilitado, es una buena práctica)
+    if (
+      !this.nuevaNoticia.titulo ||
+      !this.nuevaNoticia.texto ||
+      !this.nuevaNoticia.imagen
+    ) {
+      alert(
+        'Todos los campos son obligatorios. Por favor, completa el formulario.'
+      );
+      return; // Detiene la ejecución si la validación falla
+    }
+
+    // 2. Añadimos la nueva publicación al array.
+    // Usamos el 'spread operator' (...) para crear una COPIA del objeto.
+    // ¡Esto es crucial para que al limpiar el formulario no se modifique el post ya añadido!
+    // También actualizamos la fecha al momento exacto de la publicación.
+    this.publicaciones.push({
+      ...this.nuevaNoticia,
+      fecha: new Date(),
+    });
+
+    // 3. Reiniciamos el objeto nuevaNoticia para limpiar los campos del formulario.
+    // Gracias al two-way binding, la vista se actualizará automáticamente.
+    this.nuevaNoticia = {
+      titulo: '',
+      texto: '',
+      imagen: '',
+      fecha: new Date(),
+    };
+
+    console.log('¡Nueva noticia publicada!', this.publicaciones);
   }
 }
