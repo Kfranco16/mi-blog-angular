@@ -1,6 +1,44 @@
 <section class="blog-container">
   <h1>Mi Blog de Noticias</h1>
+  <section class="form-container">
+    <h2>Publicar Nueva Noticia</h2>
+    <form #noticiaForm="ngForm" (ngSubmit)="agregarNoticia()">
+      <div class="form-group">
+        <label for="titulo">Título</label>
+        <input
+          type="text"
+          id="titulo"
+          name="titulo"
+          [(ngModel)]="nuevaNoticia.titulo"
+          required
+        />
+      </div>
 
+      <div class="form-group">
+        <label for="imagen">URL de la Imagen</label>
+        <input
+          type="url"
+          id="imagen"
+          name="imagen"
+          [(ngModel)]="nuevaNoticia.imagen"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="texto">Cuerpo de la Noticia</label>
+        <textarea
+          id="texto"
+          name="texto"
+          rows="5"
+          [(ngModel)]="nuevaNoticia.texto"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" [disabled]="!noticiaForm.valid">Publicar</button>
+    </form>
+  </section>
   <article *ngFor="let noticia of publicaciones" class="blog-post">
     <h2>{{ noticia.titulo }}</h2>
 

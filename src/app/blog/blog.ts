@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { Noticia } from '../interfaces/noticia';
-import { DatePipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-blog',
-  imports: [DatePipe, CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './blog.html',
   styleUrl: './blog.css',
 })
 export class Blog {
   // 2. Creamos y definimos el tipo de la propiedad
   public publicaciones: Noticia[];
-
+  public nuevaNoticia: Noticia;
   constructor() {
     // 3. Inicializamos la propiedad con datos de ejemplo
     this.publicaciones = [
@@ -33,5 +34,14 @@ export class Blog {
         fecha: new Date('2025-07-10'),
       },
     ];
+    this.nuevaNoticia = {
+      titulo: '',
+      texto: '',
+      imagen: '',
+      fecha: new Date(),
+    };
+  }
+  agregarNoticia() {
+    // La lógica para añadir la noticia irá aquí
   }
 }
