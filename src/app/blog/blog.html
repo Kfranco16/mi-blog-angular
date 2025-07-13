@@ -1,8 +1,17 @@
 <section class="blog-container">
-  <h1>Mi Blog de Noticias</h1>
+  <h1 class="titulo-pulsante">Mi Blog de Noticias</h1>
   <section class="form-container">
-    <h2>Publicar Nueva Noticia</h2>
-    <form #noticiaForm="ngForm" (ngSubmit)="agregarNoticia()">
+    <h2 class="form-toggle" (click)="toggleFormulario()">
+      Publicar Nueva Noticia
+      <span class="toggle-icon">{{ mostrarFormulario ? "▼" : "▶" }}</span>
+    </h2>
+    <form
+      *ngIf="mostrarFormulario"
+      #noticiaForm="ngForm"
+      (ngSubmit)="agregarNoticia()"
+      class="form-content"
+    >
+      >
       <div class="form-group">
         <label for="titulo">Título</label>
         <input

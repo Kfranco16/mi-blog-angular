@@ -13,6 +13,7 @@ export class Blog {
   // 2. Creamos y definimos el tipo de la propiedad
   public publicaciones: Noticia[];
   public nuevaNoticia: Noticia;
+  public mostrarFormulario: boolean = false;
   constructor() {
     // 3. Inicializamos la propiedad con datos de ejemplo
     this.publicaciones = [
@@ -41,6 +42,10 @@ export class Blog {
       fecha: new Date(),
     };
   }
+  toggleFormulario() {
+    this.mostrarFormulario = !this.mostrarFormulario;
+  }
+
   agregarNoticia() {
     // 1. Validación (aunque el botón está deshabilitado, es una buena práctica)
     if (
