@@ -1,4 +1,5 @@
 /* Contenedor principal del blog */
+/* Centraliza el contenido y limita el ancho máximo para mejor legibilidad */
 .blog-container {
   max-width: 80%;
   margin: 0 auto;
@@ -7,6 +8,7 @@
 }
 
 /* Título principal con efecto de zoom pulsante */
+/* Utiliza gradiente de texto, animación de zoom y elementos decorativos */
 .titulo-pulsante {
   text-align: center;
   color: #171717;
@@ -14,6 +16,7 @@
   font-weight: bold;
   margin-bottom: 30px;
   padding: 20px 0;
+  /* Gradiente aplicado solo al texto usando background-clip */
   background: linear-gradient(135deg, #18dbe6 0%, #022f32 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -21,11 +24,13 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 3px solid #667eea;
   position: relative;
+  /* Animación continua de escala */
   animation: zoomPulse 2s ease-in-out infinite;
   transform-origin: center;
 }
 
 .titulo-pulsante::after {
+  /* Elemento decorativo: línea pequeña centrada debajo del título */
   content: "";
   position: absolute;
   bottom: -3px;
@@ -33,11 +38,11 @@
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-
   border-radius: 2px;
 }
 
 /* Animación de zoom pulsante */
+/* El título se agranda al 105% y vuelve al tamaño normal cada 2 segundos */
 @keyframes zoomPulse {
   0% {
     transform: scale(1);
@@ -59,6 +64,7 @@
 }
 
 /* Contenedor para organizar noticias en grid */
+/* Utiliza CSS Grid para mostrar 2 noticias por fila con espaciado uniforme */
 .noticias-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -67,6 +73,7 @@
 }
 
 /* Botón toggle del formulario */
+/* Botón colapsable con gradiente, efectos hover y ajuste automático de ancho */
 .form-toggle {
   background: linear-gradient(135deg, #022f32 0%, #11a9b1 100%);
   color: white;
@@ -80,7 +87,9 @@
   transition: all 0.3s ease;
   user-select: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Se ajusta automáticamente al contenido */
   width: fit-content;
+  /* Espacio entre texto e icono */
   gap: 10px;
 }
 
@@ -96,11 +105,14 @@
 }
 
 /* Contenido del formulario con animación */
+/* Animación de deslizamiento hacia abajo cuando el formulario se despliega */
 .form-content {
   animation: slideDown 0.3s ease-out;
   margin-top: 20px;
 }
 
+/* Animación de deslizamiento suave */
+/* El formulario aparece con opacidad y movimiento desde arriba */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -132,6 +144,7 @@
 }
 
 .form-group button {
+  /* Botón de envío con gradiente y efectos similar al botón toggle */
   background: linear-gradient(135deg, #022f32 0%, #11a9b1 100%);
   color: white;
   padding: 12px 20px;
@@ -144,11 +157,13 @@
 }
 
 .form-group button:hover {
+  /* Efecto hover: elevación y sombra más intensa */
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .form-group button:disabled {
+  /* Estado deshabilitado: sin efectos visuales */
   background: #ccc;
   cursor: not-allowed;
   transform: none;
@@ -172,10 +187,12 @@
 }
 
 /* Estilo para todas las imágenes del blog */
+/* Tamaño uniforme para todas las imágenes con recorte proporcional */
 .blog-post img {
   width: 100%;
   max-width: 400px;
   height: 250px;
+  /* Mantiene proporción y recorta si es necesario */
   object-fit: cover;
   border-radius: 6px;
   margin: 15px 0;
@@ -194,6 +211,7 @@
 }
 
 /* Responsive */
+/* Adaptación para dispositivos móviles: una columna y tamaños ajustados */
 @media (max-width: 600px) {
   .blog-container {
     padding: 10px;
@@ -205,6 +223,7 @@
   }
 
   .noticias-grid {
+    /* Cambia a una sola columna en móviles */
     grid-template-columns: 1fr;
     gap: 15px;
   }
