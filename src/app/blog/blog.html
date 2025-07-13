@@ -11,7 +11,6 @@
       (ngSubmit)="agregarNoticia()"
       class="form-content"
     >
-      >
       <div class="form-group">
         <label for="titulo">Título</label>
         <input
@@ -48,15 +47,18 @@
       <button type="submit" [disabled]="!noticiaForm.valid">Publicar</button>
     </form>
   </section>
-  <article *ngFor="let noticia of publicaciones" class="blog-post">
-    <h2>{{ noticia.titulo }}</h2>
 
-    <img [src]="noticia.imagen" [alt]="noticia.titulo" />
+  <div class="noticias-grid">
+    <article *ngFor="let noticia of publicaciones" class="blog-post">
+      <h2>{{ noticia.titulo }}</h2>
 
-    <p>{{ noticia.texto }}</p>
+      <img [src]="noticia.imagen" [alt]="noticia.titulo" />
 
-    <small
-      >Publicado el: {{ noticia.fecha | date : "d 'de' MMMM 'de' y" }}</small
-    >
-  </article>
+      <p>{{ noticia.texto }}</p>
+
+      <small
+        >Publicado el: {{ noticia.fecha | date : "d 'de' MMMM 'de' y" }}</small
+      >
+    </article>
+  </div>
 </section>
